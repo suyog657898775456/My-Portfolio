@@ -16,3 +16,8 @@ export default function Footer() {
     </footer>
   );
 }
+<footer>
+  <p>
+    Made with <FaHeart color="red" /> by Suyog
+  </p>
+</footer>;
