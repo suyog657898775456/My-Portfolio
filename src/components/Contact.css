@@ -1,0 +1,79 @@
+/* File: src/components/Contact.css */
+
+.contact-section {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  color: #212529;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d6efd;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: #0d6efd;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+/* Contact Cards */
+.contact-card {
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+  color: #0d6efd;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.contact-card:hover .contact-icon {
+  color: #0a58ca; /* darker shade on hover */
+}
+
+.contact-card a {
+  text-decoration: none;
+  color: #495057;
+  transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+  color: #0d6efd;
+}
+
+/* Card Title */
+.contact-card .card-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-icon {
+    font-size: 2rem;
+  }
+}

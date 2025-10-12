@@ -1,0 +1,105 @@
+/* Container section */
+.home-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa; /* light background */
+  color: #212529;
+}
+
+/* Profile image - bigger size */
+.profile-img {
+  width: 500px; /* bigger desktop size */
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%; /* keep circle shape */
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Hover effect on image */
+.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Headings */
+.home-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.home-section h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #6c757d; /* secondary text color */
+}
+
+/* Paragraph text */
+.home-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #6c757d;
+}
+
+/* Buttons */
+.home-section .btn {
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.home-section .btn-primary:hover {
+  background-color: #0d6efd;
+  transform: translateY(-2px);
+}
+
+.home-section .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Social icons */
+.social-icon {
+  font-size: 2.5rem;
+  color: #212529;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #0d6efd;
+  transform: translateY(-3px);
+}
+
+/* Responsive design for mobile */
+@media (max-width: 767px) {
+  .home-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .profile-img {
+    width: 250px; /* bigger on mobile but still fits */
+    margin-top: 3rem;
+  }
+
+  .home-section h1 {
+    font-size: 2rem;
+  }
+
+  .home-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .home-section p {
+    font-size: 1rem;
+  }
+
+  .home-section .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
