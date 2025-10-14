@@ -1,5 +1,4 @@
-// File: src/components/Projects.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./Projects.css";
@@ -7,6 +6,15 @@ import "./Projects.css";
 export default function Projects() {
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleShow = (project) => {
     setSelectedProject(project);
@@ -44,7 +52,7 @@ export default function Projects() {
       name: "Suyog Rating App",
       description:
         "Rate your favorite stores out of 5! A full MERN stack project with secure login and real-time database storage.",
-      role: " Full-Stack Focused on UI, rating logic, and backend communication.",
+      role: "Full-Stack Focused on UI, rating logic, and backend communication.",
       technologies: "React.js, Node.js, Express.js, MongoDB, JWT Auth",
       image: `${process.env.PUBLIC_URL}/images/project 3.png`,
       liveLink: "#",
@@ -65,7 +73,9 @@ export default function Projects() {
 
   return (
     <section className="projects-section py-5">
+      <div className="projects-bg-animation"></div>
       <Container>
+        {/* Section title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,45 +86,38 @@ export default function Projects() {
           </h2>
         </motion.div>
 
+        {/* Project Cards */}
         <Row>
           {projects.map((project, index) => (
             <Col md={4} sm={6} key={index} className="mb-4">
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
-                className="position-relative"
               >
-                <Card className="project-card shadow-lg border-0 h-100 overflow-hidden">
+                <Card className="project-card shadow-sm border-0 h-100 overflow-hidden">
                   <Card.Img
                     variant="top"
                     src={project.image}
                     alt={project.name}
                     className="project-img"
                   />
-
-                  {/* Hover Overlay */}
-                  <motion.div
-                    className="overlay d-flex flex-column justify-content-center align-items-center"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h5 className="text-white fw-bold mb-3">{project.name}</h5>
+                  <Card.Body className="d-flex flex-column justify-content-between">
+                    <h5>{project.name}</h5>
                     <Button
-                      variant="light"
+                      variant="primary"
                       onClick={() => handleShow(project)}
-                      className="fw-semibold"
+                      className="mt-2"
                     >
                       Details
                     </Button>
-                  </motion.div>
+                  </Card.Body>
                 </Card>
               </motion.div>
             </Col>
           ))}
         </Row>
 
-        {/* ✅ Animated Slide-Up Modal */}
+        {/* Animated Modal */}
         <AnimatePresence>
           {showModal && selectedProject && (
             <motion.div
@@ -124,15 +127,26 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               className="custom-modal-overlay"
             >
+              {/* Floating coder grid behind modal on mobile */}
+              {isMobile && <div className="floating-grid"></div>}
+
               <motion.div
                 className="custom-modal"
-                initial={{ y: "100vh" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100vh" }}
+                initial={
+                  isMobile
+                    ? { y: "100vh", opacity: 0 }
+                    : { y: "-100vh", opacity: 0 }
+                }
+                animate={{ y: 0, opacity: 1 }}
+                exit={
+                  isMobile
+                    ? { y: "100vh", opacity: 0 }
+                    : { y: "-100vh", opacity: 0 }
+                }
                 transition={{ type: "spring", stiffness: 90, damping: 15 }}
               >
                 <div className="modal-header-custom d-flex justify-content-between align-items-center">
-                  <h4 className="text-white mb-0">{selectedProject.name}</h4>
+                  <h4>{selectedProject.name}</h4>
                   <Button
                     variant="outline-light"
                     size="sm"
@@ -141,6 +155,7 @@ export default function Projects() {
                     ✕
                   </Button>
                 </div>
+
                 <div className="modal-body-custom p-4">
                   <motion.img
                     src={selectedProject.image}
@@ -150,17 +165,29 @@ export default function Projects() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <p className="mb-3 text-secondary">
+
+                  <p>
                     <strong>Description:</strong> {selectedProject.description}
                   </p>
-                  <p className="mb-3 text-secondary">
+                  <p>
                     <strong>My Role:</strong> {selectedProject.role}
                   </p>
-                  <p className="mb-4 text-secondary">
-                    <strong>Technologies Used:</strong>{" "}
-                    {selectedProject.technologies}
-                  </p>
-                  <div className="d-flex gap-3">
+
+                  <div className="tech-icons">
+                    {selectedProject.technologies.split(", ").map((tech, i) => (
+                      <motion.span
+                        key={i}
+                        className="tech-badge"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: i * 0.1 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  <div className="d-flex gap-3 mt-4 flex-wrap">
                     <Button
                       variant="primary"
                       href={selectedProject.liveLink}

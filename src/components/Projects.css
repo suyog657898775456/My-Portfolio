@@ -1,119 +1,195 @@
-.projects-section {
-  background: #f8fafc;
-  min-height: 100vh;
-}
-
-.section-title {
-  font-weight: 700;
-  font-size: 2.5rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #0d1b2a;
-  position: relative;
-}
-
-.section-title::after {
-  content: "";
-  width: 80px;
-  height: 3px;
-  background: #0d6efd;
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 5px;
-}
-
-/* Card Styles */
+/* ================= Project Cards ================= */
 .project-card {
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  position: relative;
-  background: #ffffff;
-  transition: all 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
 }
 
 .project-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .project-img {
+  width: 100%;
   height: 220px;
-  width: 100%;
   object-fit: cover;
+  border-bottom: 1px solid #eee;
 }
 
-/* Hover Overlay */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(13, 27, 42, 0.85);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-
-.overlay h5 {
-  font-size: 1.3rem;
-  text-align: center;
-}
-
-.overlay button {
-  border-radius: 8px;
+/* Card Title */
+.project-card h5 {
   font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* Modal Overlay */
+/* Card Button */
+.project-card .btn {
+  transition: all 0.2s ease;
+  background-color: #1976d2;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.project-card .btn:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= Modal Overlay ================= */
 .custom-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  z-index: 1050;
+  background: rgba(0, 0, 0, 0.25); /* lighter overlay for light theme */
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
-/* Slide-Up Modal */
+/* ================= Modal Box ================= */
 .custom-modal {
-  background: #ffffff;
-  border-radius: 20px 20px 0 0;
-  width: 90%;
-  max-width: 800px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+  background: #fdfdfd; /* light background */
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%;
+  color: #333;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transform-origin: center;
 }
 
 /* Modal Header */
 .modal-header-custom {
-  background: #0d6efd;
-  padding: 15px 25px;
-  border-radius: 20px 20px 0 0;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-custom h4 {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.modal-header-custom button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.modal-header-custom button:hover {
+  color: #1976d2;
+  transform: rotate(90deg);
 }
 
 /* Modal Body */
 .modal-body-custom {
-  background: #f8fafc;
+  padding: 1.5rem;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.modal-body-custom p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
 }
 
+/* Modal Buttons */
+.modal-body-custom .btn {
+  min-width: 100px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.modal-body-custom .btn-primary {
+  background-color: #1976d2;
+  border: none;
+}
+
+.modal-body-custom .btn-primary:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-body-custom .btn-dark {
+  background-color: #555;
+  border: none;
+}
+
+.modal-body-custom .btn-dark:hover {
+  background-color: #333;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= Tech Badges ================= */
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  justify-content: center;
+}
+
+.tech-badge {
+  display: inline-block;
+  background-color: #e3f2fd; /* light blue */
+  color: #1976d2;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.tech-badge:hover {
+  background-color: #bbdefb;
+  transform: scale(1.05);
+}
+
+/* ================= Mobile Responsive ================= */
 @media (max-width: 768px) {
   .project-img {
     height: 180px;
+  }
+
+  .custom-modal {
+    max-width: 95%;
+  }
+
+  .modal-body-custom p {
+    font-size: 0.9rem;
+  }
+
+  .modal-body-custom .btn {
+    width: 48%;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-body-custom .btn:last-child {
+    margin-left: 0.5rem;
+  }
+
+  .tech-badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
   }
 }
