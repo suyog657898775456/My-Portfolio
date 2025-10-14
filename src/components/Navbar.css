@@ -1,0 +1,87 @@
+/* Glassmorphism Navbar Style */
+.custom-navbar {
+  background: rgba(13, 25, 45, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover shadow effect when scrolling */
+.custom-navbar.scrolled {
+  background: rgba(13, 25, 45, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Brand styling */
+.brand-name {
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+}
+
+.brand-highlight {
+  background: linear-gradient(90deg, #0d6efd, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-dot {
+  color: #f8f9fa;
+}
+
+/* Navbar links */
+.nav-item-link {
+  color: #dee2e6 !important;
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin: 0 0.75rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-item-link:hover {
+  color: #0d6efd !important;
+}
+
+/* Underline animation for active and hover states */
+.nav-item-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #0d6efd;
+  transition: width 0.3s ease;
+}
+
+.nav-item-link:hover::after,
+.nav-item-link.active::after {
+  width: 100%;
+}
+
+/* Social Icons */
+.social-link {
+  color: #f8f9fa;
+  font-size: 1.4rem;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: #0d6efd;
+  transform: translateY(-3px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 992px) {
+  .nav-item-link {
+    text-align: center;
+    margin: 0.6rem 0;
+  }
+
+  .social-link {
+    margin: 0.5rem;
+  }
+}

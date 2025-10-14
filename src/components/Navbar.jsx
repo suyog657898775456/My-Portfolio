@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import "./Navbar.css";
 
 export default function NavigationBar() {
   const location = useLocation();
@@ -8,19 +9,15 @@ export default function NavigationBar() {
   return (
     <Navbar
       expand="lg"
-      bg="dark"
-      variant="dark"
       sticky="top"
-      className="shadow-sm py-3"
+      className="custom-navbar shadow-sm py-3"
+      variant="dark"
     >
       <Container>
         {/* Brand Name */}
-        <Navbar.Brand
-          as={Link}
-          to="/"
-          className="fw-bold fs-4 text-uppercase text-primary"
-        >
-          Suyog Dhepe<span className="text-light"> .Portfolio</span>
+        <Navbar.Brand as={Link} to="/" className="fw-bold fs-4 brand-name">
+          <span className="brand-highlight">Suyog Dhepe</span>
+          <span className="brand-dot"> .Portfolio</span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" />
@@ -35,9 +32,7 @@ export default function NavigationBar() {
                   key={i}
                   as={Link}
                   to={path}
-                  className={`mx-2 ${
-                    isActive ? "text-primary fw-semibold" : "text-light"
-                  }`}
+                  className={`nav-item-link ${isActive ? "active" : ""}`}
                 >
                   {page}
                 </Nav.Link>
@@ -50,7 +45,7 @@ export default function NavigationBar() {
                 href="https://github.com/suyog657898775456"
                 target="_blank"
                 rel="noreferrer"
-                className="text-light me-3 fs-5"
+                className="social-link"
               >
                 <FaGithub />
               </a>
@@ -58,14 +53,11 @@ export default function NavigationBar() {
                 href="https://www.linkedin.com/in/suyog-dhepe-a51246298/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-light me-3 fs-5"
+                className="social-link"
               >
                 <FaLinkedin />
               </a>
-              <a
-                href="mailto:suyogdhepe18@gmail.com"
-                className="text-light fs-5"
-              >
+              <a href="mailto:suyogdhepe18@gmail.com" className="social-link">
                 <FaEnvelope />
               </a>
             </div>

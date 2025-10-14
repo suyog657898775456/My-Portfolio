@@ -1,17 +1,15 @@
-/* File: src/components/Profile.css */
-
 .profile-section {
-  min-height: 100vh;
-  background-color: #f8f9fa;
+  background: #f8f9fa;
   color: #212529;
+  padding: 4rem 0;
 }
 
 .section-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #0d6efd;
+  color: #111;
+  margin-bottom: 2rem;
   position: relative;
-  display: inline-block;
 }
 
 .section-title::after {
@@ -19,9 +17,9 @@
   display: block;
   width: 50px;
   height: 3px;
-  background-color: #0d6efd;
+  background: #0d6efd;
   margin-top: 5px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .overview {
@@ -30,36 +28,38 @@
   color: #495057;
 }
 
-.skill-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: none;
-  border-radius: 10px;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.skill-card .card-title {
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+.overview .highlight {
   color: #0d6efd;
+  font-weight: 600;
 }
 
-.progress {
-  height: 20px;
-  border-radius: 10px;
-  font-weight: 500;
-  font-size: 0.85rem;
+.profile-tech-img {
+  width: 250px;
+  max-width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.profile-tech-img:hover {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+/* Circular skill title */
+.CircularProgressbar {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  font-weight: 600;
 }
 
 /* Responsive */
 @media (max-width: 767px) {
-  .section-title {
-    font-size: 1.7rem;
-  }
   .overview {
-    font-size: 1rem;
+    text-align: center;
+  }
+
+  .profile-tech-img {
+    margin-top: 2rem;
   }
 }
