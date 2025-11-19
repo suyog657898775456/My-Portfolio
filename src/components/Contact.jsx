@@ -28,7 +28,7 @@ export default function Contact() {
       icon: <FaGithub />,
       label: "GitHub",
       value: "Suyog Dhepe",
-      link: "https://www.linkedin.com/in/suyog-dhepe-a51246298/",
+      link: "https://github.com/suyog657898775456",
     },
   ];
 

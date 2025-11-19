@@ -1,14 +1,73 @@
+/* ================= Projects Section Background Animation ================= */
+.projects-section {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: #fafafa;
+}
+
+.projects-bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.projects-bg-animation::before,
+.projects-bg-animation::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(25, 118, 210, 0.2) 0%,
+    rgba(25, 118, 210, 0) 70%
+  );
+  width: 200px;
+  height: 200px;
+  animation: floatCircle 12s ease-in-out infinite;
+}
+
+.projects-bg-animation::after {
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 70%;
+  animation-delay: 6s;
+}
+
+@keyframes floatCircle {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50px) translateX(30px) scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.5;
+  }
+}
+
 /* ================= Project Cards ================= */
 .project-card {
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #ffffff;
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
 }
 
 .project-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .project-img {
@@ -16,40 +75,45 @@
   height: 220px;
   object-fit: cover;
   border-bottom: 1px solid #eee;
+  transition: transform 0.3s ease;
 }
 
-/* Card Title */
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
+
 .project-card h5 {
+  font-family: "Roboto Mono", monospace;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  color: #222;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
-/* Card Button */
 .project-card .btn {
   transition: all 0.2s ease;
   background-color: #1976d2;
   border: none;
   color: #fff;
   font-weight: 500;
+  font-family: "Roboto Mono", monospace;
 }
 
 .project-card .btn:hover {
   background-color: #1565c0;
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* ================= Modal Overlay ================= */
+/* ================= Modal ================= */
 .custom-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.25); /* lighter overlay for light theme */
+  background: rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,36 +122,37 @@
   overflow-y: auto;
 }
 
-/* ================= Modal Box ================= */
 .custom-modal {
-  background: #fdfdfd; /* light background */
-  border-radius: 12px;
+  background: #fdfdfd;
+  border-radius: 14px;
   max-width: 700px;
   width: 100%;
   color: #333;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transform-origin: center;
+  font-family: "Roboto Mono", monospace;
+  border-left: 5px solid #1976d2;
 }
 
-/* Modal Header */
 .modal-header-custom {
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e0e0e0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .modal-header-custom h4 {
-  font-weight: 600;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #1976d2;
 }
 
 .modal-header-custom button {
   background: none;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   cursor: pointer;
   color: #555;
   transition: transform 0.2s ease, color 0.2s ease;
@@ -98,7 +163,6 @@
   transform: rotate(90deg);
 }
 
-/* Modal Body */
 .modal-body-custom {
   padding: 1.5rem;
 }
@@ -107,14 +171,15 @@
   font-size: 0.95rem;
   line-height: 1.6;
   color: #555;
+  margin-bottom: 0.8rem;
 }
 
-/* Modal Buttons */
 .modal-body-custom .btn {
   min-width: 100px;
   font-weight: 500;
   border-radius: 6px;
   transition: all 0.2s ease;
+  font-family: "Roboto Mono", monospace;
 }
 
 .modal-body-custom .btn-primary {
@@ -150,18 +215,19 @@
 
 .tech-badge {
   display: inline-block;
-  background-color: #e3f2fd; /* light blue */
-  color: #1976d2;
+  background-color: #e0f7fa;
+  color: #006064;
   padding: 0.35rem 0.75rem;
   font-size: 0.85rem;
   font-weight: 500;
   border-radius: 20px;
   transition: all 0.2s ease;
   cursor: default;
+  font-family: "Roboto Mono", monospace;
 }
 
 .tech-badge:hover {
-  background-color: #bbdefb;
+  background-color: #b2ebf2;
   transform: scale(1.05);
 }
 
@@ -171,25 +237,85 @@
     height: 180px;
   }
 
+  /* Modal full screen on mobile */
   .custom-modal {
-    max-width: 95%;
+    max-width: 100%;
+    height: 90vh;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .modal-header-custom {
+    padding: 1rem;
+  }
+
+  /* Scrollable modal body */
+  .modal-body-custom {
+    padding: 1rem;
+    overflow-y: auto;
+    flex-grow: 1;
   }
 
   .modal-body-custom p {
     font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Buttons stack vertically */
+  .modal-body-custom .d-flex.gap-3 {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .modal-body-custom .btn {
-    width: 48%;
+    width: 100%;
     margin-bottom: 0.5rem;
   }
 
-  .modal-body-custom .btn:last-child {
-    margin-left: 0.5rem;
+  /* Tech badges wrap nicely */
+  .tech-icons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem;
   }
 
   .tech-badge {
     font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* Image scaling for small screens */
+  .modal-body-custom img {
+    max-height: 180px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  /* ================= Floating Grid Behind Modal ================= */
+  .floating-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(#1976d2 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: moveGrid 8s linear infinite;
+    opacity: 0.15;
+  }
+
+  @keyframes moveGrid {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
   }
 }

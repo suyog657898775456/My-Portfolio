@@ -31,7 +31,7 @@ export default function Home() {
                 <Button
                   variant="outline-primary"
                   size="lg"
-                  href="https://drive.google.com/file/d/1zvOkFZXbjlfs93_arTI094e_o1hxuv4O/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1rXB27iafMYDGdorzNJvlBoHtlTJ5K9-t/view?usp=sharing"
                   target="_blank"
                 >
                   Download Resume
@@ -40,7 +40,7 @@ export default function Home() {
 
               <div className="d-flex align-items-center gap-3 mt-4">
                 <a
-                  href="https://github.com/yourgithub"
+                  href="https://github.com/suyog657898775456"
                   target="_blank"
                   rel="noreferrer"
                   className="social-icon"
@@ -48,7 +48,7 @@ export default function Home() {
                   <FaGithub />
                 </a>
                 <a
-                  href="https://linkedin.com/in/yourlinkedin"
+                  href="https://www.linkedin.com/in/suyog-dhepe-a51246298/"
                   target="_blank"
                   rel="noreferrer"
                   className="social-icon"
