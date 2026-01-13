@@ -1,83 +1,161 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { Container, Row, Col } from "react-bootstrap";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import {
+  SiReact,
+  SiNodedotjs,
+  SiMongodb,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiRedux,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiExpress,
+  SiNextdotjs,
+} from "react-icons/si";
+// Import the VS Code icon from the 'vsc' library instead
+import { VscVscode } from "react-icons/vsc";
+import { FaLaptopCode, FaDatabase, FaTools } from "react-icons/fa";
 import "./Profile.css";
 
 export default function Profile() {
-  const skills = [
-    { name: "React.js", level: 90, color: "#61DBFB" },
-    { name: "Node.js / Express", level: 85, color: "#3C873A" },
-    { name: "MongoDB", level: 80, color: "#4DB33D" },
-    { name: "JavaScript / ES6+", level: 95, color: "#F0DB4F" },
-    { name: "HTML & CSS", level: 95, color: "#E34F26" },
-    { name: "Bootstrap / React-Bootstrap", level: 90, color: "#563D7C" },
+  const techStack = [
+    {
+      category: "Frontend",
+      icon: <FaLaptopCode />,
+      skills: [
+        { name: "React", icon: <SiReact />, color: "#61DBFB" },
+        { name: "Next.js", icon: <SiNextdotjs />, color: "#ffffff" },
+        { name: "Redux", icon: <SiRedux />, color: "#764ABC" },
+        { name: "JS (ES6+)", icon: <SiJavascript />, color: "#F0DB4F" },
+        { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26" },
+        { name: "CSS3", icon: <SiCss3 />, color: "#1572B6" },
+        { name: "Bootstrap", icon: <SiBootstrap />, color: "#7952B3" },
+      ],
+    },
+    {
+      category: "Backend & DB",
+      icon: <FaDatabase />,
+      skills: [
+        { name: "Node.js", icon: <SiNodedotjs />, color: "#68A063" },
+        { name: "Express", icon: <SiExpress />, color: "#ffffff" },
+        { name: "MongoDB", icon: <SiMongodb />, color: "#4DB33D" },
+      ],
+    },
+    {
+      category: "Tools",
+      icon: <FaTools />,
+      skills: [
+        { name: "Git", icon: <SiGit />, color: "#F05032" },
+        { name: "GitHub", icon: <SiGithub />, color: "#ffffff" },
+        { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
+        { name: "VS Code", icon: <VscVscode />, color: "#007ACC" },
+      ],
+    },
   ];
 
   return (
-    <section className="profile-section py-5">
+    <section id="about" className="profile-section">
+      {/* Background Decor */}
+      <div className="profile-glow glow-left"></div>
+      <div className="profile-glow glow-right"></div>
+
       <Container>
-        {/* Overview */}
-        <Row className="align-items-center mb-5">
-          <Col md={6}>
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="section-header text-center mb-5"
+        >
+          <span className="subtitle">Discover</span>
+          <h2 className="title">
+            About <span className="highlight">Me</span>
+          </h2>
+        </motion.div>
+
+        <Row className="justify-content-center align-items-start gx-5 gy-5">
+          {/* --- LEFT: BIO CARD --- */}
+          <Col lg={5} md={12}>
             <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bio-card"
             >
-              <h2 className="section-title mb-3">About Me</h2>
-              <p className="overview">
-                Hi, I am <span className="highlight">Suyog Dhepe</span>, a
-                passionate{" "}
-                <span className="highlight">MERN Stack Developer</span>. I
-                specialize in building{" "}
-                <span className="highlight">scalable web applications</span>
-                with modern UI/UX, writing clean code, and delivering solutions
-                efficiently. I love solving problems and continuously learning
-                new technologies.
+              <div className="bio-header">
+                <h3>Who I Am</h3>
+                <div className="header-line"></div>
+              </div>
+
+              <p className="bio-text">
+                Hi! I'm <strong className="text-white">Suyog Dhepe</strong>. I'm
+                a passionate{" "}
+                <span className="highlight">MERN Stack Developer</span> who
+                bridges the gap between elegant design and robust functionality.
               </p>
+              <p className="bio-text">
+                I don't just write code; I build solutions. From crafting
+                responsive frontends to architecting scalable backends, I thrive
+                on solving complex problems with modern web technologies.
+              </p>
+
+              {/* Quick Stats Row */}
+              <div className="stats-container">
+                <div className="stat-box">
+                  <h4 className="stat-number">10+</h4>
+                  <span className="stat-label">Projects</span>
+                </div>
+                <div className="stat-separator"></div>
+                <div className="stat-box">
+                  <h4 className="stat-number">02+</h4>
+                  <span className="stat-label">Years Exp.</span>
+                </div>
+              </div>
             </motion.div>
           </Col>
 
-          <Col md={6} className="text-center">
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              <img
-                src={`${process.env.PUBLIC_URL}/images/MERN-Stack.png`}
-                alt="MERN Stack"
-                className="profile-tech-img"
-              />
-            </motion.div>
-          </Col>
-        </Row>
+          {/* --- RIGHT: TECH STACK --- */}
+          <Col lg={7} md={12}>
+            <div className="tech-container">
+              {techStack.map((cat, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="tech-category"
+                >
+                  <div className="category-header">
+                    <span className="cat-icon">{cat.icon}</span>
+                    <h5 className="cat-name">{cat.category}</h5>
+                  </div>
 
-        {/* Skills */}
-        <h2 className="section-title mb-4 text-center">My Skills</h2>
-        <Row className="justify-content-center">
-          {skills.map((skill, index) => (
-            <Col xs={6} sm={4} md={3} key={index} className="mb-4 text-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <CircularProgressbar
-                  value={skill.level}
-                  text={`${skill.level}%`}
-                  styles={buildStyles({
-                    pathColor: skill.color,
-                    textColor: "#0d6efd",
-                    trailColor: "#e0e0e0",
-                    textSize: "16px",
-                  })}
-                />
-                <h6 className="mt-2">{skill.name}</h6>
-              </motion.div>
-            </Col>
-          ))}
+                  <div className="skills-wrapper">
+                    {cat.skills.map((skill, sIdx) => (
+                      <motion.div
+                        key={sIdx}
+                        whileHover={{ y: -5, scale: 1.05 }}
+                        className="skill-pill"
+                        style={{ "--glow-color": skill.color }}
+                      >
+                        <span
+                          className="skill-icon"
+                          style={{ color: skill.color }}
+                        >
+                          {skill.icon}
+                        </span>
+                        <span className="skill-name">{skill.name}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </Col>
         </Row>
       </Container>
     </section>

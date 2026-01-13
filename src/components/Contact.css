@@ -1,79 +1,161 @@
-/* File: src/components/Contact.css */
-
+/* --- SECTION BASE --- */
 .contact-section {
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  color: #212529;
+  position: relative;
+  padding: 100px 0;
+  background-color: #0f172a;
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+/* Background Glow */
+.contact-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.1) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- HEADER --- */
+.section-desc {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 15px auto 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* --- CONTACT CARDS --- */
+.contact-card-link {
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.contact-card-glass {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0d6efd;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 2rem;
+.contact-card-link:hover .contact-card-glass {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
-.section-title::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 3px;
-  background-color: #0d6efd;
-  margin-top: 5px;
+.icon-wrapper {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.contact-card-link:hover .icon-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.contact-title {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.contact-value {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.contact-card-link:hover .contact-value {
+  color: #6366f1;
+}
+
+/* --- SOCIAL FOOTER --- */
+.social-footer {
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.divider-line {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  margin: 0 auto 30px;
   border-radius: 2px;
 }
 
-/* Contact Cards */
-.contact-card {
-  border-radius: 12px;
-  padding: 1.5rem 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.contact-icon {
-  font-size: 2.5rem;
-  color: #0d6efd;
-  margin-bottom: 0.75rem;
-  transition: color 0.3s ease;
-}
-
-.contact-card:hover .contact-icon {
-  color: #0a58ca; /* darker shade on hover */
-}
-
-.contact-card a {
-  text-decoration: none;
-  color: #495057;
-  transition: color 0.3s ease;
-}
-
-.contact-card a:hover {
-  color: #0d6efd;
-}
-
-/* Card Title */
-.contact-card .card-title {
+.social-heading {
+  color: #cbd5e1;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 20px;
 }
 
-/* Responsive */
-@media (max-width: 767px) {
-  .section-title {
-    font-size: 1.7rem;
+.social-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-size: 1.3rem;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.social-circle:hover {
+  background: #6366f1;
+  color: #fff;
+  transform: translateY(-5px) scale(1.1);
+  border-color: #6366f1;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 0;
   }
 
-  .contact-icon {
-    font-size: 2rem;
+  .contact-card-glass {
+    padding: 30px 15px;
   }
 }

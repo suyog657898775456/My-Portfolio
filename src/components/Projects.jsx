@@ -1,53 +1,47 @@
-import { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import { FaGithub, FaExternalLinkAlt, FaCode } from "react-icons/fa";
 import "./Projects.css";
 
 export default function Projects() {
-  const [flippedIndex, setFlippedIndex] = useState(null);
-
-  const handleFlip = (index) => {
-    setFlippedIndex(index === flippedIndex ? null : index);
-  };
-
   const projects = [
     {
-      name: "Direct Market Access For Farmers",
+      name: "Direct Market Access",
+      category: "Full Stack / MERN",
       description:
-        "A full-stack app allowing farmers to sell produce directly to buyers, removing middlemen and improving profits.",
-      role: "Worked on both frontend & backend — implemented REST APIs, ML recommendations & UI components.",
-      technologies:
-        "React.js, Node.js, Express.js, MongoDB, Machine Learning API, Weather API",
+        "A revolutionary platform connecting farmers directly to buyers. Features include real-time ML price recommendations, inventory management, and secure payment gateways.",
+      technologies: ["React", "Node.js", "MongoDB", "ML API", "Stripe"],
       image: `${process.env.PUBLIC_URL}/images/project 1.png`,
       liveLink: "#",
       githubLink: "#",
     },
     {
-      name: "My Journey",
+      name: "Hotel Management System",
+      category: "Backend System",
       description:
-        "A CRUD web app to manage hotel listings. Users can create, read, update and delete data securely.",
-      role: "Built backend APIs, MongoDB integration, and user authentication system.",
-      technologies: "React.js, Node.js, Express.js, MongoDB, Bootstrap",
+        "A robust CRUD application for hotel listings. Handles complex booking logic, user authentication, and administrative dashboards for property management.",
+      technologies: ["React", "Express", "MongoDB", "JWT", "Bootstrap"],
       image: `${process.env.PUBLIC_URL}/images/project 3.png`,
       liveLink: "#",
       githubLink: "#",
     },
     {
-      name: "Suyog Rating App",
+      name: "Store Rating App",
+      category: "Interactive UI",
       description:
-        "Rate your favorite stores! A MERN project with real-time DB and JWT Authentication.",
-      role: "Focused on UI, rating logic, and backend communication.",
-      technologies: "React.js, Node.js, Express.js, MongoDB, JWT Auth",
+        "A social rating platform for local businesses. Users can rate, review, and filter stores. Implements real-time database updates and secure authentication.",
+      technologies: ["React", "Node.js", "Redux", "JWT Auth"],
       image: `${process.env.PUBLIC_URL}/images/project 2.png`,
       liveLink: "#",
       githubLink: "#",
     },
     {
       name: "Suyog AI ChatBot",
+      category: "Artificial Intelligence",
       description:
-        "An AI chatbot built using OpenAI API and Streamlit with real-time intelligent responses.",
-      role: "Integrated OpenAI API with Streamlit UI and Python backend.",
-      technologies: "Python, Streamlit, OpenAI API",
+        "An intelligent conversational agent powered by OpenAI. Capable of context-aware responses and deployed via Streamlit for rapid interaction.",
+      technologies: ["Python", "Streamlit", "OpenAI API", "NLP"],
       image: `${process.env.PUBLIC_URL}/images/project 4.png`,
       liveLink:
         "https://suyog657898775456-ai-chatbot-by-suyog--smartagentui26-jrmhhz.streamlit.app/",
@@ -55,93 +49,116 @@ export default function Projects() {
     },
   ];
 
-  return (
-    <section className="projects-section py-5">
-      <Container>
-        <h2 className="section-title mb-5 text-center text-dark">
-          My Projects
-        </h2>
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-        <Row>
-          {projects.map((project, index) => (
-            <Col md={4} sm={6} key={index} className="mb-4">
-              <motion.div
-                className={`flip-card ${
-                  flippedIndex === index ? "flipped" : ""
-                }`}
-              >
-                <div className="flip-card-inner">
-                  {/* FRONT SIDE */}
-                  <div className="flip-card-front">
-                    <Card className="project-card shadow-sm border-0 h-100">
-                      <Card.Img
-                        variant="top"
-                        src={project.image}
-                        alt={project.name}
-                        className="project-img"
-                      />
-                      <Card.Body className="d-flex flex-column justify-content-between">
-                        <h5>{project.name}</h5>
-                        <Button
-                          variant="primary"
-                          className="mt-2"
-                          onClick={() => handleFlip(index)}
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <section id="projects" className="projects-section">
+      <div className="projects-bg-glow"></div>
+
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="section-header text-center mb-5"
+        >
+          <span className="subtitle">My Portfolio</span>
+          <h2 className="title">
+            Featured <span className="highlight">Projects</span>
+          </h2>
+          <p className="section-desc">
+            A selection of projects that demonstrate my skills in solving
+            real-world problems.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <Row className="g-4">
+            {projects.map((project, index) => (
+              <Col lg={6} md={12} key={index}>
+                <motion.div variants={cardVariants} className="project-card">
+                  {/* Image Area */}
+                  <div className="card-image-wrapper">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="project-image"
+                      onError={(e) => {
+                        e.target.src =
+                          "https://via.placeholder.com/600x400/0f172a/6366f1?text=Project+Image";
+                      }}
+                    />
+                    <div className="card-overlay">
+                      <div className="overlay-links">
+                        <a
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="icon-btn"
+                          title="View Code"
                         >
-                          Details
-                        </Button>
-                      </Card.Body>
-                    </Card>
+                          <FaGithub />
+                        </a>
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="icon-btn"
+                          title="Live Demo"
+                        >
+                          <FaExternalLinkAlt />
+                        </a>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* BACK SIDE */}
-                  <div className="flip-card-back p-4">
-                    <h4>{project.name}</h4>
+                  {/* Content Area */}
+                  <div className="card-content">
+                    <div className="card-meta">
+                      <span className="category-tag">
+                        <FaCode className="me-1" /> {project.category}
+                      </span>
+                    </div>
 
-                    <p>
-                      <strong>Description:</strong> {project.description}
-                    </p>
-                    <p>
-                      <strong>My Role:</strong> {project.role}
-                    </p>
+                    <h3 className="project-title">{project.name}</h3>
+                    <p className="project-desc">{project.description}</p>
 
-                    <div className="tech-icons mb-3">
-                      {project.technologies.split(", ").map((tech, i) => (
-                        <span key={i} className="tech-badge">
+                    <div className="tech-stack">
+                      {project.technologies.map((tech, i) => (
+                        <span key={i} className="tech-pill">
                           {tech}
                         </span>
                       ))}
                     </div>
-
-                    <div className="d-flex gap-3 mt-3 flex-wrap">
-                      <Button
-                        variant="primary"
-                        href={project.liveLink}
-                        target="_blank"
-                      >
-                        Live Demo
-                      </Button>
-                      <Button
-                        variant="dark"
-                        href={project.githubLink}
-                        target="_blank"
-                      >
-                        GitHub
-                      </Button>
-                    </div>
-
-                    <Button
-                      variant="outline-light"
-                      className="mt-3"
-                      onClick={() => handleFlip(index)}
-                    >
-                      ✕ Close
-                    </Button>
                   </div>
-                </div>
-              </motion.div>
-            </Col>
-          ))}
-        </Row>
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+        </motion.div>
       </Container>
     </section>
   );

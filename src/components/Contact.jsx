@@ -1,70 +1,120 @@
-// File: src/components/Contact.jsx
+import React from "react";
 import { motion } from "framer-motion";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
+import { Container, Row, Col } from "react-bootstrap";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
 import "./Contact.css";
 
 export default function Contact() {
-  const contacts = [
+  const contactInfo = [
     {
       icon: <FaEnvelope />,
-      label: "Email",
+      title: "Email Me",
       value: "suyogdhepe18@gmail.com",
       link: "mailto:suyogdhepe18@gmail.com",
+      color: "#6366f1",
     },
     {
       icon: <FaPhone />,
-      label: "Phone",
+      title: "Call Me",
       value: "+91 8010124700",
-      link: "tel:+911234567890",
+      link: "tel:+918010124700",
+      color: "#10b981",
     },
     {
-      icon: <FaLinkedin />,
-      label: "LinkedIn",
-      value: "Suyog Dhepe",
-      link: "https://www.linkedin.com/in/suyog-dhepe-a51246298/",
-    },
-    {
-      icon: <FaGithub />,
-      label: "GitHub",
-      value: "Suyog Dhepe",
-      link: "https://github.com/suyog657898775456",
+      icon: <FaMapMarkerAlt />,
+      title: "Location",
+      value: "Maharashtra, India",
+      link: "#",
+      color: "#ec4899",
     },
   ];
 
   return (
-    <section className="contact-section py-5">
+    <section id="contact" className="contact-section">
+      <div className="contact-bg-glow"></div>
+
       <Container>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="section-header text-center mb-5"
         >
-          <h2 className="section-title mb-5 text-center">Contact Me</h2>
+          <span className="subtitle">Get in Touch</span>
+          <h2 className="title">
+            Contact <span className="highlight">Me</span>
+          </h2>
+          <p className="section-desc">
+            I am currently available for freelance work and internship
+            opportunities.
+            <br />
+            Feel free to reach out via email or phone.
+          </p>
         </motion.div>
 
-        <Row className="justify-content-center">
-          {contacts.map((contact, index) => (
-            <Col md={3} sm={6} xs={12} className="mb-4" key={index}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+        {/* Contact Cards Grid */}
+        <Row className="justify-content-center g-4 mb-5">
+          {contactInfo.map((item, index) => (
+            <Col lg={4} md={6} key={index}>
+              <motion.a
+                href={item.link}
+                target={item.link === "#" ? "_self" : "_blank"}
+                rel="noreferrer"
+                className="contact-card-link"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                <Card className="contact-card text-center shadow-sm h-100">
-                  <Card.Body>
-                    <div className="contact-icon mb-3">{contact.icon}</div>
-                    <Card.Title>{contact.label}</Card.Title>
-                    <Card.Text>
-                      <a href={contact.link} target="_blank" rel="noreferrer">
-                        {contact.value}
-                      </a>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </motion.div>
+                <div className="contact-card-glass">
+                  <div className="icon-wrapper" style={{ color: item.color }}>
+                    {item.icon}
+                  </div>
+                  <h4 className="contact-title">{item.title}</h4>
+                  <p className="contact-value">{item.value}</p>
+                </div>
+              </motion.a>
             </Col>
           ))}
         </Row>
+
+        {/* Social Connect Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="social-footer text-center"
+        >
+          <div className="divider-line"></div>
+          <h5 className="social-heading">Connect on Social Media</h5>
+          <div className="social-icons-row">
+            <a
+              href="https://github.com/suyog657898775456"
+              target="_blank"
+              rel="noreferrer"
+              className="social-circle"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/suyog-dhepe-a51246298/"
+              target="_blank"
+              rel="noreferrer"
+              className="social-circle"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
