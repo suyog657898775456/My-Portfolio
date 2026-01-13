@@ -37,7 +37,7 @@ export default function Home() {
   const downloadResume = () => {
     // Replace with your actual Google Drive link
     const resumeUrl =
-      "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID";
+      "https://drive.google.com/file/d/1rXB27iafMYDGdorzNJvlBoHtlTJ5K9-t/view?usp=sharing";
     window.open(resumeUrl, "_blank");
   };
 
@@ -123,7 +123,7 @@ export default function Home() {
 
               <div className="hero-socials fade-in-up delay-5">
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/suyog657898775456"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
@@ -131,7 +131,7 @@ export default function Home() {
                   <FaGithub />
                 </a>
                 <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/suyog-dhepe-a51246298/"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
